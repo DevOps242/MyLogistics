@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">MyLogistics</string>
+    <string name="welcome">Welcome</string>
+    <string name="manage_account">Manage Account</string>
+    <string name="international_address_heading">International Address:</string>
+    <string name="international_street">2954 NE 84 ST</string>
+    <string name="suite">Suite</string>
+    <string name="international_city">Miami</string>
+    <string name="international_postal_code">312095</string>
+    <string name="international_state_country">Florida, USA</string>
+    <string name="home_address_heading">Home Address:</string>
 </resources>

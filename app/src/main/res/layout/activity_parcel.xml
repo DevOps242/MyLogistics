@@ -6,4 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ParcelActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="121dp"
+        android:layout_height="13dp"
+        android:text="Parcel Page"
+        tools:layout_editor_absoluteX="138dp"
+        tools:layout_editor_absoluteY="269dp" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:menu="@menu/nav_menu"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
