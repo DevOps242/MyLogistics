@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.lh1158892.mylogistics.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+    <activity
+        android:id="@+id/parcelActivity"
+        android:name="com.lh1158892.mylogistics.ParcelActivity"
+        android:label="activity_parcel"
+        tools:layout="@layout/activity_parcel" />
+    <activity
+        android:id="@+id/deliveryActivity"
+        android:name="com.lh1158892.mylogistics.DeliveryActivity"
+        android:label="activity_delivery"
+        tools:layout="@layout/activity_delivery" />
+    <activity
+        android:id="@+id/accountSettingActivity"
+        android:name="com.lh1158892.mylogistics.AccountSettingActivity"
+        android:label="activity_account_setting"
+        tools:layout="@layout/activity_account_setting" />
+</navigation>
