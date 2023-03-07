@@ -14,6 +14,7 @@
         android:layout_marginVertical="15dp"
         android:textSize="30dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
         android:layout_marginVertical="15dp"
         android:layout_marginHorizontal="15dp"
         android:textSize="20dp"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/accountPageTitle"
         />
 
@@ -39,6 +41,7 @@
         android:layout_marginHorizontal="30dp"
         android:textSize="15dp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintTop_toBottomOf="@id/welcomeMessage"
         />
 
@@ -49,6 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginVertical="15dp"
         android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/brown_300"
         app:layout_constraintTop_toBottomOf="@id/internationalAddressHeading"
         >
         <LinearLayout
@@ -63,6 +67,7 @@
             android:layout_marginVertical="3dp"
             android:layout_marginHorizontal="30dp"
             android:textSize="15sp"
+            android:textColor="@color/black"
             />
 
         <TextView
@@ -73,6 +78,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="3dp"
             android:textSize="15sp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/internationalStreetAddress"
             />
 
@@ -84,6 +90,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="3dp"
             android:textSize="15dp"
+                android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/internationalSuiteNumber"
             />
         <TextView
@@ -94,6 +101,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="3dp"
             android:textSize="15dp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/internationalCity"
             />
         <TextView
@@ -104,6 +112,7 @@
             android:layout_marginHorizontal="30dp"
             android:layout_marginVertical="3dp"
             android:textSize="15dp"
+            android:textColor="@color/black"
             app:layout_constraintTop_toBottomOf="@id/internationalStateCountry"
             />
         </LinearLayout>
@@ -123,16 +132,52 @@
             android:layout_marginHorizontal="30dp"
             android:textSize="15dp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             />
 
-        <ImageButton
+        <Button
             android:id="@+id/homeAddressAddButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/baseline_add_24"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="25dp"
+            android:textAlignment="center"
+            app:cornerRadius="20dp"
+            android:drawableLeft="@drawable/baseline_add_24"
+            android:text="Add More"
             />
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/managePasswordButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="5dp"
+        android:text="Manage Password"
+        app:cornerRadius="20dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/deleteAccountButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/gray_800"
+        />
+
+    <Button
+        android:id="@+id/deleteAccountButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="5dp"
+        android:text="Delete Account"
+        app:cornerRadius="20dp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/red_650"
+        />
 
 
     <!--Navigation Bar-->

@@ -1,4 +1,4 @@
-package com.lh1158892.mylogistics.Model
+package com.lh1158892.mylogistics.Models
 
 import java.text.DecimalFormat
 
