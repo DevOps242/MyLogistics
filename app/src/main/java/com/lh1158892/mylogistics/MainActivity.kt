@@ -19,8 +19,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         var currentActivity = 0;
 
-//        navController = Navigation.findNavController(this, R.id.mainActivity)
-//        setupWithNavController(binding.bottomNavigationView, navController)
 
         // Handle Navigation Actions for the Activities
         var navigationHandler = binding.bottomNavigationView
