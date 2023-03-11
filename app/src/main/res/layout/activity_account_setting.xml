@@ -117,6 +117,8 @@
             />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+    <!--Home Address Label and Add button-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -145,6 +147,7 @@
             app:cornerRadius="20dp"
             android:drawableLeft="@drawable/baseline_add_24"
             android:text="Add More"
+
             />
     </LinearLayout>
 
