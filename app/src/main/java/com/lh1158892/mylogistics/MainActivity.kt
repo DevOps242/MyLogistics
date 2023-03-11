@@ -55,5 +55,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Parcel View All Button
+        binding.viewAllParcelButton.setOnClickListener {
+            val intent = Intent(this, ParcelActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Deliveries View All Button
+        binding.viewAllDeliveriesButton.setOnClickListener {
+            val intent = Intent(this, DeliveryActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
