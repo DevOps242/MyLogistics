@@ -2,7 +2,7 @@ package com.lh1158892.mylogistics.Models
 
 import com.google.firebase.Timestamp
 
-class Recepient(
+class Recipient(
     var id: String? = null,
     var firstName: String? = null,
     var lastName: String? = null,

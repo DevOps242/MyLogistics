@@ -12,7 +12,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
-import com.lh1158892.mylogistics.Models.Recepient
+import com.lh1158892.mylogistics.Models.Recipient
 
 
 class AuthActivity : AppCompatActivity() {
@@ -91,7 +91,7 @@ class AuthActivity : AppCompatActivity() {
 
         val suiteNumber: Int = getNextSuiteNumber()
 
-        var recipient = Recepient(documentId, null, null,suiteNumber, null, documentEmail, documentCreated );
+        var recipient = Recipient(documentId, null, null,suiteNumber, null, documentEmail, documentCreated );
 
         db.document(documentId).set(recipient)
             .addOnSuccessListener {
@@ -121,9 +121,8 @@ class AuthActivity : AppCompatActivity() {
                         highestSuiteNumber = suiteNumber
                     }
                 }
-                highestSuiteNumber += 1
             }
 
-        return highestSuiteNumber;
+        return highestSuiteNumber + 1;
     }
 }
