@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -47,18 +48,27 @@ class AuthActivity : AppCompatActivity() {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
 
-            // Check if user email is already added in the Recipients collection in DB
-            Log.i("Data-Dump", user.toString());
+            val db = FirebaseFirestore.getInstance().collection("recipients")
+            db.document(user.uid)
+                .get()
+                .addOnSuccessListener {
+                    if(it.exists()) {
+                        val intent = Intent(this, MainActivity::class.java)
 
-            // Fire function to add the user.
-            if (!checkRecipientExist(user)){
-                addRecipient(user)
-            }
-            val intent = Intent(this, MainActivity::class.java)
+                        intent.putExtra("user", user)
+                        startActivity(intent)
+                    } else {
+                        addRecipient(user)
 
-            intent.putExtra("user", user)
-            startActivity(intent)
+                        val intent = Intent(this, MainActivity::class.java)
 
+                        intent.putExtra("user", user)
+                        startActivity(intent)
+                    }
+                }
+                .addOnFailureListener {
+                    Log.w("DB_Issue", "User Login - ${it.localizedMessage}")
+                }
         } else {
             // Sign in failed. If response is null the user canceled the
             // sign-in flow using the back button. Otherwise check
@@ -69,19 +79,6 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    private fun checkRecipientExist(user: FirebaseUser): Boolean {
-        val db = FirebaseFirestore.getInstance().collection("recipients")
-
-        var documentId = user.uid
-
-        var result: Boolean = false
-
-        db.document(documentId).get()
-            .addOnSuccessListener {
-                result = true;
-            }
-        return result;
-    }
     private fun addRecipient(user: FirebaseUser) {
         val db = FirebaseFirestore.getInstance().collection("recipients")
 
@@ -114,7 +111,7 @@ class AuthActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 documents ->
                 for(document in documents) {
-                    val suiteNumber = document.getString("suite")?.toInt() ?: 0
+                    val suiteNumber = document.getLong("suite")?.toInt() ?: 0
 
                     // Update the highest suite number if this document's suite number is higher
                     if (suiteNumber > highestSuiteNumber){
