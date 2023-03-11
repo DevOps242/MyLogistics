@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.lh1158892.mylogistics.Models.Address
@@ -49,20 +50,19 @@ class AddHomeAddressActivity : AppCompatActivity() {
 
                     // Access the addresses collection to store the new user address.
                     var dbAddress = FirebaseFirestore.getInstance().collection("addresses")
-                    dbAddress.document().set(address)
-                        .addOnCompleteListener {
-                            address.id = dbAddress.document().get().toString()
-                            dbAddress.document(address.id!!).update("id", address.id)
-                        }
+                    address.id = dbAddress.document().id
+                    dbAddress.document(address.id!!).set(address)
                         .addOnFailureListener { // Let the user know that an error occurred.
                             exception -> Log.w("DB_Issue", exception.localizedMessage )
                             Toast.makeText(this, "An error occurred, please try again later!", Toast.LENGTH_LONG).show()
                         }
 
                     // Create the recipient from the object
-                    var recipient = it.toObject<Recipient>(Recipient::class.java)
-                    recipient?.addresses?.add(address.id!!)
+                    var recipient = it.toObject(Recipient::class.java)
 
+                    if (recipient != null) {
+                        db.document(userId).update("addresses", FieldValue.arrayUnion(address.id))
+                    }
                 }
                 .addOnFailureListener {  // Let the user know that an error occurred.
                     exception -> Log.w("DB_Issue", exception.localizedMessage )
