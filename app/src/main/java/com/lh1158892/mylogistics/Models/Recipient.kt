@@ -7,7 +7,7 @@ class Recipient(
     var firstName: String? = null,
     var lastName: String? = null,
     var suite: Int,
-    var addresses: ArrayList<Address>? = null,
+    var addresses: ArrayList<String>? = null,
     var email: String? = null,
     var createdOn: Timestamp
 
