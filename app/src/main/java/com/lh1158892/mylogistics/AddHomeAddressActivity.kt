@@ -62,6 +62,7 @@ class AddHomeAddressActivity : AppCompatActivity() {
 
                     if (recipient != null) {
                         db.document(userId).update("addresses", FieldValue.arrayUnion(address.id))
+
                     }
                 }
                 .addOnFailureListener {  // Let the user know that an error occurred.
