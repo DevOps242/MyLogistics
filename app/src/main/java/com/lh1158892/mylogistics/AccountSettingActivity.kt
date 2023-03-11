@@ -1,10 +1,13 @@
 package com.lh1158892.mylogistics
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.lh1158892.mylogistics.databinding.ActivityAccountSettingBinding
-import com.lh1158892.mylogistics.databinding.ActivityDeliveryBinding
+
 
 class AccountSettingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAccountSettingBinding
@@ -43,5 +46,28 @@ class AccountSettingActivity : AppCompatActivity() {
                 }
             }
         }
+
+        // Handle add address button
+        binding.homeAddressAddButton.setOnClickListener {
+
+            // Load the fragment page to create the new address.
+            val intent = Intent(this, AddHomeAddressActivity::class.java)
+            startActivity(intent)
+        }
+
+        var user = FirebaseAuth.getInstance().currentUser
+
+        var db = FirebaseFirestore.getInstance().collection("recipients")
+        var documentId = user.uid
+
+        db.document(documentId)
+            .get()
+            .addOnSuccessListener {
+                binding.internationalSuiteNumber.text = "Suite: " + it.get("suite").toString()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Error Loading User Data, please try again later.", Toast.LENGTH_LONG).show()
+            }
     }
+
 }

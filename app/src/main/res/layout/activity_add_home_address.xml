@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddHomeAddressActivity">
+
+
+    <TextView
+        android:id="@+id/AddHomeAddressTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_home_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginVertical="35dp"
+        android:layout_marginHorizontal="25dp"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+
+    <!--Add HomeAddress Input Fields-->
+    <LinearLayout
+        android:id="@+id/homeAddressInputLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddHomeAddressTitle"
+        >
+
+
+    <EditText
+        android:id="@+id/addHomeAddressStreetAddressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Street Address"
+        />
+
+    <EditText
+        android:id="@+id/addHomeAddressStreetAddressTwoEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Street Address 2" />
+
+    <EditText
+        android:id="@+id/addHomeAddressCityEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="City" />
+
+    <EditText
+        android:id="@+id/addHomeAddressStateEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="State"
+        />
+
+    <Spinner
+        android:id="@+id/addHomeAddressCountrySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:entries="@array/countries"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        />
+
+    <EditText
+        android:id="@+id/addHomeAddressPostalEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:paddingVertical="15dp"
+        android:layout_marginHorizontal="20dp"
+        android:hint="Postal Code"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/homeAddressButtonLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="30dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/homeAddressInputLayout"
+        >
+
+    <Button
+        android:id="@+id/cancelHomeAddressButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/red_300"
+        android:text="Cancel"
+        android:layout_weight="1"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/saveHomeAddressButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:text="Save"
+        android:layout_weight="1"
+        />
+
+
+
+
+</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
