@@ -40,34 +40,22 @@ class AddHomeAddressActivity : AppCompatActivity() {
             val userId = FirebaseAuth.getInstance().currentUser.uid
 
             // Access the Fire Store
-            var db = FirebaseFirestore.getInstance().collection("recipients")
-            db.document(userId)
-                .get()
-                .addOnSuccessListener {
+            var db = FirebaseFirestore.getInstance().collection("addresses")
+            var addressId = db.document().id
 
-                    // Create the address object
-                    var address = Address(null, streetAddress, streetAddressTwo, city, state, country, postalCode)
+            // Create the address object
+            var address = Address(addressId, userId, streetAddress, streetAddressTwo, city, state, country, postalCode)
 
-                    // Access the addresses collection to store the new user address.
-                    var dbAddress = FirebaseFirestore.getInstance().collection("addresses")
-                    address.id = dbAddress.document().id
-                    dbAddress.document(address.id!!).set(address)
-                        .addOnFailureListener { // Let the user know that an error occurred.
-                            exception -> Log.w("DB_Issue", exception.localizedMessage )
-                            Toast.makeText(this, "An error occurred, please try again later!", Toast.LENGTH_LONG).show()
-                        }
-
-                    // Create the recipient from the object
-                    var recipient = it.toObject(Recipient::class.java)
-
-                    if (recipient != null) {
-                        db.document(userId).update("addresses", FieldValue.arrayUnion(address.id))
-
-                    }
-                }
-                .addOnFailureListener {  // Let the user know that an error occurred.
-                    exception -> Log.w("DB_Issue", exception.localizedMessage )
-                    Toast.makeText(this, "An error occurred, please try again later!", Toast.LENGTH_LONG).show()
+            // Store the address in the Database
+            db.document(addressId).set(address)
+                .addOnFailureListener { // Let the user know that an error occurred.
+                        exception ->
+                    Log.w("DB_Issue", exception.localizedMessage)
+                    Toast.makeText(
+                        this,
+                        "An error occurred, please try again later!",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
             // return back to the Account Page.

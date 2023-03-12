@@ -2,21 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="7dp"
+    android:paddingBottom="3dp"
+    android:clipToPadding="false"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--International Card View-->
     <androidx.cardview.widget.CardView
-        android:id="@+id/internationalAddressCard"
+        android:id="@+id/localStreetAddressAddressCard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="15dp"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="25dp"
+        android:clipToPadding="false"
         android:backgroundTint="@color/green_300"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="10dp"
         tools:ignore="MissingConstraints">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginVertical="5dp">
             <TextView
                 android:id="@+id/localStreetAddress"
                 android:text="2953 NE 69 AV"
@@ -29,7 +37,7 @@
                 />
 
             <TextView
-                android:id="@+id/localSuiteNumber"
+                android:id="@+id/localStreetAddressTwo"
                 android:text="Suite 54232"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,8 +58,19 @@
                 android:textColor="@color/black"
                 />
             <TextView
-                android:id="@+id/localStateCountry"
-                android:text="Florida, USA"
+                android:id="@+id/localState"
+                android:text="Florida"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginVertical="3dp"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:id="@+id/localCountry"
+                android:text="USA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
