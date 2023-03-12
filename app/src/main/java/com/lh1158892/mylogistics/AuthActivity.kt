@@ -88,7 +88,7 @@ class AuthActivity : AppCompatActivity() {
 
         val suiteNumber: Int = getNextSuiteNumber()
 
-        var recipient = Recipient(documentId, null, null,suiteNumber, null, documentEmail, documentCreated );
+        var recipient = Recipient(documentId, null, null,suiteNumber, documentEmail, documentCreated );
 
         db.document(documentId).set(recipient)
             .addOnSuccessListener {

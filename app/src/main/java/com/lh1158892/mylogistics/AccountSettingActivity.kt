@@ -4,11 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.lh1158892.mylogistics.Adapters.HomeAddressAdapter
 import com.lh1158892.mylogistics.Models.Recipient
+import com.lh1158892.mylogistics.ViewModels.HomeAddressViewModel
 import com.lh1158892.mylogistics.databinding.ActivityAccountSettingBinding
+import kotlinx.coroutines.awaitAll
 
 
 class AccountSettingActivity : AppCompatActivity() {
@@ -23,34 +27,38 @@ class AccountSettingActivity : AppCompatActivity() {
         var db = FirebaseFirestore.getInstance().collection("recipients")
         var documentId = user.uid
 
-        var homeAddressCount = 0;
 
         db.document(documentId)
             .get()
             .addOnSuccessListener {
                 binding.internationalSuiteNumber.text = "Suite: " + it.get("suite").toString()
-                var recipient = it.toObject(Recipient::class.java)
-
-                // Get the count of addresses currently saved.
-                if (recipient != null) {
-                    homeAddressCount = recipient.addresses?.size!!
-                }
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error Loading User Data, please try again later.", Toast.LENGTH_LONG).show()
             }
 
 
+        // Connect the RecyclerView, Adapter and ViewModel
+        val viewModel: HomeAddressViewModel by viewModels()
+        viewModel.getAddresses().observe(this) {
+            binding.homeAddressRecyclerView.adapter = HomeAddressAdapter(this, it)
+        }
+
+//        if (homeAddressCount <= 0) {
+//            Toast.makeText(this, "There are no Home Address to show", Toast.LENGTH_LONG)
+//                .show()
+//        }
+
         // Handle add address button
         binding.homeAddressAddButton.setOnClickListener {
-            if (homeAddressCount >= 1){
-                Toast.makeText(this, "You are only allowed to have two home address at a time", Toast.LENGTH_LONG).show()
-                return@setOnClickListener;
-            } else {
+//            if (homeAddressCount >= 2){
+//                Toast.makeText(this, "You are only allowed to have two home address at a time", Toast.LENGTH_LONG).show()
+//                return@setOnClickListener;
+//            } else {
                 // Load the fragment page to create the new address.
                 val intent = Intent(this, AddHomeAddressActivity::class.java)
                 startActivity(intent)
-            }
+//            }
         }
 
         // Handle Navigation Actions for the Activities
@@ -84,6 +92,5 @@ class AccountSettingActivity : AppCompatActivity() {
             }
         }
     }
-
 
 }
