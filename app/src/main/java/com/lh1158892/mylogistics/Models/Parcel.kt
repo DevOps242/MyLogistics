@@ -4,7 +4,7 @@ import java.text.DecimalFormat
 
 class Parcel (
     var id : String? = null,
-    var suite : Recepient,
+    var recipientId : String? = null,
     var description : String? = null,
     var fragile : Boolean = false,
     var status : String = "Pending",
@@ -12,5 +12,5 @@ class Parcel (
     var warehouseNumber : String? = null,
     var vendor : String? = null,
     var location : String? = null,
-    var weight : DecimalFormat? = null,
+    var weight : Double? = null,
         )

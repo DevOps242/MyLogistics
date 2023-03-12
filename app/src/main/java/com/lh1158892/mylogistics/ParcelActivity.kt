@@ -3,9 +3,9 @@ package com.lh1158892.mylogistics
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
+import androidx.activity.viewModels
+import com.lh1158892.mylogistics.Adapters.ParcelAdapter
+import com.lh1158892.mylogistics.ViewModels.ParcelViewModel
 import com.lh1158892.mylogistics.databinding.ActivityParcelBinding
 
 class ParcelActivity : AppCompatActivity() {
@@ -15,6 +15,12 @@ class ParcelActivity : AppCompatActivity() {
         binding = ActivityParcelBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        //This will be used to connect the RecyclerView, adapter and viewModel together
+        val viewModel : ParcelViewModel by viewModels()
+        viewModel.getParcels().observe(this, {
+            binding.parcelRecyclerView.adapter = ParcelAdapter(this,it)
+        })
 
         // Handle Navigation Actions for the Activities
         var navigationHandler = binding.bottomNavigationView
@@ -46,6 +52,5 @@ class ParcelActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }
