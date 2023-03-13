@@ -73,8 +73,7 @@ class AddHomeAddressActivity : AppCompatActivity() {
         binding.addHomeAddressPostalEditText.text.clear();
 
         // return back to the Account Page.
-        val intent = Intent(this, AccountSettingActivity::class.java)
-        startActivity(intent)
+       finish()
     }
 
 

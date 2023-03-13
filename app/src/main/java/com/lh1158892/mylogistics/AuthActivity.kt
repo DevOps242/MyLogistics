@@ -13,6 +13,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.lh1158892.mylogistics.Models.Parcel
 import com.lh1158892.mylogistics.Models.Recipient
 
 
@@ -59,6 +60,7 @@ class AuthActivity : AppCompatActivity() {
                         startActivity(intent)
                     } else {
                         addRecipient(user)
+                        createDummyParcels(user)
 
                         val intent = Intent(this, MainActivity::class.java)
 
@@ -98,6 +100,39 @@ class AuthActivity : AppCompatActivity() {
                 exception -> Log.w("DB_Issue", exception.localizedMessage)
                 Toast.makeText(this, "DB Error", Toast.LENGTH_LONG).show()
             }
+    }
+
+    private fun createDummyParcels(user:FirebaseUser){
+        val db = FirebaseFirestore.getInstance().collection("parcels")
+
+        var userId = user.uid
+
+        // Create some parcels.
+        var parcelOne = Parcel(null, null, "Macbook Pro 2019", true, "Pending", "4354SDASGVAEWQ121", "21155", "Apple", "Warehouse", 8.64, "Pending", null );
+        var parcelTwo = Parcel(null, null, "Complex Maths Book", false, "Pending", "43543543ABHGEWQ121", "25175", "O'Reilly", "Warehouse", 1.15, "Pending", null );
+        var parcelThree = Parcel(null, null, "Coffee Mug", true, "Pending", "854FSADCAA2100", "25175", "Amazon", "In Transit", 1.64, "Pending", null );
+        var parcelFour = Parcel(null, null, "Nike Sock Pack", false, "Pending", "112143450078AFD", "21155", "Nike", "Warehouse", .94, "Pending", null );
+
+        var parcelArray = ArrayList<Parcel>()
+
+        parcelArray.add(parcelOne)
+        parcelArray.add(parcelTwo)
+        parcelArray.add(parcelThree)
+        parcelArray.add(parcelFour)
+
+        // Add each to database.
+        for (parcelItem in parcelArray){
+            parcelItem.id = db.document().id
+            parcelItem.recipientId = userId
+            db.document(parcelItem.id!!).set(parcelItem)
+                .addOnSuccessListener {
+                    return@addOnSuccessListener
+                }
+                .addOnFailureListener {
+                    exception -> Log.w("DB_Issue", exception.localizedMessage)
+                    Toast.makeText(this, "DB Error", Toast.LENGTH_LONG).show()
+                }
+        }
     }
 
     private fun getNextSuiteNumber(): Int {

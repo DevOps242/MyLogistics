@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), ParcelAdapter.ParcelItemListener {
             parcels.addAll(it)
             parcels?.let {
                 for (parcel in parcels) {
-                    if (parcel.location == "In transit" || parcel.location == "Warehouse") {
+                    if ((parcel.location == "In transit") || (parcel.location == "Warehouse")) {
                         binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this, it, this)
                     }
                 }
