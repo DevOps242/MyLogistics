@@ -3,13 +3,14 @@ package com.lh1158892.mylogistics
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.lh1158892.mylogistics.Adapters.ParcelAdapter
 import com.lh1158892.mylogistics.Models.Parcel
 import com.lh1158892.mylogistics.ViewModels.ParcelViewModel
 import com.lh1158892.mylogistics.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ParcelAdapter.ParcelItemListener {
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             parcels?.let {
                 for (parcel in parcels) {
                     if (parcel.location == "In transit" || parcel.location == "Warehouse") {
-                        binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this, it)
+                        binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this, it, this)
                     }
                 }
             }
@@ -86,5 +87,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun parcelSelected(parcel: Parcel) {
+            Log.i("Parcel_Selected", "$parcel")
+            var intent = Intent(this, ParcelDetailActivity::class.java)
+            intent.putExtra("documentId", parcel.id)
+            startActivity(intent)
     }
 }

@@ -12,8 +12,8 @@ import com.lh1158892.mylogistics.R
 
 class ParcelAdapter (val context: Context,
                      val parcels : List<Parcel>,
-) : RecyclerView.Adapter<ParcelAdapter.ParcelViewHolder>(){
-//    val itemListener: HomeAddressItemListener
+                     val itemListener: ParcelItemListener) : RecyclerView.Adapter<ParcelAdapter.ParcelViewHolder>(){
+
 
     inner class ParcelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
@@ -22,7 +22,7 @@ class ParcelAdapter (val context: Context,
         val parcelVendorTextView = itemView.findViewById<TextView>(R.id.parcelItemVendor)
         val parcelWeightTextView = itemView.findViewById<TextView>(R.id.parcelItemWeight)
         val parcelLocationValueTextView = itemView.findViewById<TextView>(R.id.parcelItemLocationValue)
-//        val parcelButton = itemView.findViewById<TextView>(R.id.parcelItemButton)
+        val parcelButton = itemView.findViewById<TextView>(R.id.parcelItemButton)
 
     }
 
@@ -43,6 +43,9 @@ class ParcelAdapter (val context: Context,
             parcelVendorTextView.text = "Vendor: " + parcel.vendor
             parcelWeightTextView.text = "Weight: " + parcel.weight.toString() + " lbs"
             parcelLocationValueTextView.text = parcel.location
+            parcelButton.setOnClickListener {
+                itemListener.parcelSelected(parcel)
+            }
         }
     }
 
@@ -50,7 +53,8 @@ class ParcelAdapter (val context: Context,
         return parcels.size
     }
 
-
-
+    interface ParcelItemListener{
+        fun parcelSelected(parcel: Parcel)
+    }
 
 }

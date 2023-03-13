@@ -3,12 +3,14 @@ package com.lh1158892.mylogistics
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import com.lh1158892.mylogistics.Adapters.ParcelAdapter
+import com.lh1158892.mylogistics.Models.Parcel
 import com.lh1158892.mylogistics.ViewModels.ParcelViewModel
 import com.lh1158892.mylogistics.databinding.ActivityParcelBinding
 
-class ParcelActivity : AppCompatActivity() {
+class ParcelActivity : AppCompatActivity(), ParcelAdapter.ParcelItemListener {
     private lateinit var binding: ActivityParcelBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +21,9 @@ class ParcelActivity : AppCompatActivity() {
         //This will be used to connect the RecyclerView, adapter and viewModel together
         val viewModel : ParcelViewModel by viewModels()
         viewModel.getParcels().observe(this, {
-            binding.parcelRecyclerView.adapter = ParcelAdapter(this,it)
+            binding.parcelRecyclerView.adapter = ParcelAdapter(this,it, this)
         })
+
 
         // Handle Navigation Actions for the Activities
         var navigationHandler = binding.bottomNavigationView
@@ -52,5 +55,12 @@ class ParcelActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun parcelSelected(parcel: Parcel) {
+        Log.i("Parcel_Selected", "$parcel")
+        var intent = Intent(this, ParcelDetailActivity::class.java)
+        intent.putExtra("documentId", parcel.id)
+        startActivity(intent)
     }
 }

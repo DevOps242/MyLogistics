@@ -13,4 +13,6 @@ class Parcel (
     var vendor : String? = null,
     var location : String? = null,
     var weight : Double? = null,
+    var invoiceStatus : String = "Pending",
+    var invoiceId : String? = null
         )
