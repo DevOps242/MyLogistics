@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.lh1158892.mylogistics.Adapters.ParcelAdapter
+import com.lh1158892.mylogistics.Models.Parcel
 import com.lh1158892.mylogistics.ViewModels.ParcelViewModel
 import com.lh1158892.mylogistics.databinding.ActivityMainBinding
 
@@ -17,11 +18,28 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         var currentActivity = 0;
 
+        //create a list of Projects to populate the Project Spinner
+        var parcels : MutableList<Parcel> = ArrayList()
+
+        // This currently gets all.
+//        val viewModel : ParcelViewModel by viewModels()
+//        viewModel.getParcels().observe(this, {
+//            binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this,it)
+//        })
+
 
         val viewModel : ParcelViewModel by viewModels()
-        viewModel.getParcels().observe(this, {
-            binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this,it)
-        })
+        viewModel.getParcels().observe(this) {
+            parcels.addAll(it)
+            parcels?.let {
+                for (parcel in parcels) {
+                    if (parcel.location == "In transit" || parcel.location == "Warehouse") {
+                        binding.parcelRecyclerViewMain.adapter = ParcelAdapter(this, it)
+                    }
+                }
+            }
+
+        }
 
         // Parcel View All Button
         binding.viewAllParcelButton.setOnClickListener {

@@ -12,6 +12,9 @@
         android:theme="@style/Theme.MyLogistics"
         tools:targetApi="31">
         <activity
+            android:name=".ParcelDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddHomeAddressActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
