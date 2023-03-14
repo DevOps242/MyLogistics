@@ -17,6 +17,11 @@
 
 -- Challenge: Building the navigation and allowing the focus to change
 
+### Technology
+> Firebase (NoSQL), Kotlin, XML, OAuth(Google)
+
+### Author
+> Akeem Palmer - [Github](https://github.com/DevOps242), [LinkedIn](https://www.linkedin.com/in/akeempalmer/), [Portfolio](https://akeempalmer.onrender.com)
 
 ### Images
 
@@ -29,8 +34,4 @@
 ![Manage Account Screen](screenshots/logistics3.webp "Manage Account Screen")
 
 ![Add Home Address Screen](screenshots/logistics4.webp "Add Home Address Screen")
-
-### Author
-> Akeem Palmer - [Github](https://github.com/DevOps242), [LinkedIn](https://www.linkedin.com/in/akeempalmer/), [Portfolio](https://akeempalmer.onrender.com)
-
 
