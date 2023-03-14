@@ -20,15 +20,15 @@
 
 ### Images
 
-![Google Authentication](screenshots/logistics.jpeg "Google Authentication")
+![Google Authentication](screenshots/logistics.webp "Google Authentication")
 
-![Main Activity Screen / Dashboard](screenshots/logistics1.jpeg "Main Activity Screen / Dashboard")
+![Main Activity Screen / Dashboard](screenshots/logistics1.webp "Main Activity Screen / Dashboard")
 
-![Manage Parcel Screen](screenshots/logistics2.jpeg "Manage Parcel Screen")
+![Manage Parcel Screen](screenshots/logistics2.webp "Manage Parcel Screen")
 
-![Manage Account Screen](screenshots/logistics3.jpeg "Manage Account Screen")
+![Manage Account Screen](screenshots/logistics3.webp "Manage Account Screen")
 
-![Add Home Address Screen](screenshots/logistics4.jpeg "Add Home Address Screen")
+![Add Home Address Screen](screenshots/logistics4.webp "Add Home Address Screen")
 
 ### Author
 > Akeem Palmer - [Github](https://github.com/DevOps242), [LinkedIn](https://www.linkedin.com/in/akeempalmer/), [Portfolio](https://akeempalmer.onrender.com)
