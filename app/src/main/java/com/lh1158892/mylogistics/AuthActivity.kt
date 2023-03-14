@@ -8,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -31,7 +30,7 @@ class AuthActivity : AppCompatActivity() {
         val signInIntent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setAvailableProviders(providers)
-//            .setLogo(R.drawable.time_tracker_logo)
+            .setLogo(R.drawable.logistic_logo)
             .build()
         signInLauncher.launch(signInIntent)
     }
@@ -49,6 +48,8 @@ class AuthActivity : AppCompatActivity() {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
 
+            val suiteNumber = getNextSuiteNumber()
+
             val db = FirebaseFirestore.getInstance().collection("recipients")
             db.document(user.uid)
                 .get()
@@ -59,7 +60,7 @@ class AuthActivity : AppCompatActivity() {
                         intent.putExtra("user", user)
                         startActivity(intent)
                     } else {
-                        addRecipient(user)
+                        addRecipient(user, suiteNumber)
                         createDummyParcels(user)
 
                         val intent = Intent(this, MainActivity::class.java)
@@ -81,16 +82,20 @@ class AuthActivity : AppCompatActivity() {
         }
     }
 
-    private fun addRecipient(user: FirebaseUser) {
+    private fun addRecipient(user: FirebaseUser, suiteNumber: Int) {
         val db = FirebaseFirestore.getInstance().collection("recipients")
 
-        var documentId = user.uid
-        var documentEmail = user.email
-        var documentCreated = Timestamp.now()
+        val displayName = user.displayName?.split(" ")
+        val documentId = user.uid
+        val documentEmail = user.email
 
-        val suiteNumber: Int = getNextSuiteNumber()
+        val documentFirstName = displayName?.get(0)
+        val documentLastName = displayName?.get(displayName.size - 1)
+        val documentCreated = Timestamp.now()
 
-        var recipient = Recipient(documentId, null, null,suiteNumber, documentEmail, documentCreated );
+        val suiteNumber: Int = suiteNumber
+
+        var recipient = Recipient(documentId, documentFirstName, documentLastName,suiteNumber, documentEmail, documentCreated );
 
         db.document(documentId).set(recipient)
             .addOnSuccessListener {
@@ -153,6 +158,7 @@ class AuthActivity : AppCompatActivity() {
                         highestSuiteNumber = suiteNumber
                     }
                 }
+                return@addOnSuccessListener
             }
 
         return highestSuiteNumber + 1;

@@ -5,7 +5,7 @@ import java.text.DecimalFormat
 
 class Payment (
     var id : String? = null,
-    var suite : Recepient,
+    var suite : Recipient,
     var parcel : Parcel,
     var invoiceRef : String? = null,
     var invoiceStatus : String? = "Pending",

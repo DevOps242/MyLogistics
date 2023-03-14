@@ -41,6 +41,13 @@ class MainActivity : AppCompatActivity(), ParcelAdapter.ParcelItemListener {
             }
         }
 
+        // Set welcome message
+        var name = user.displayName.split(" ")[0]
+
+        if (!name.isNullOrBlank()){
+            binding.mainPageWelcome.text = "Welcome $name"
+        }
+
         // Tracking Parcel Search
         binding.trackParcelButton.setOnClickListener {
             // get the tracking id text from user.

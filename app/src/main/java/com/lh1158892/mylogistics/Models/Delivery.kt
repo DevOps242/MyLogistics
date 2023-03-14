@@ -1,12 +1,13 @@
 package com.lh1158892.mylogistics.Models
 
-import com.google.type.DateTime
+import com.google.firebase.Timestamp
 
 class Delivery (
     var id : String? = null,
     var status : String? = "In Progress",
-    var parcel : Parcel,
-    var address: Address,
-    var deliveryDate: DateTime,
-    var createdOn: DateTime
+    var parcelId : String? = null,
+    var addressId: String? = null,
+    var recipientId : String? = null,
+    var deliveryDate: Timestamp,
+    var createdOn: Timestamp
         )
