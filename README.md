@@ -28,6 +28,7 @@
 > Fixed the Bottom Navigation to show the active page.
 > Secured Firebase-Firestore Database.
 > Added AAB to google play internal release (awaiting verification from Google Play Team, currently requested assistance from support's supervisor (case #below/).
+> Keeps failing the GooglePlay Verification
 
 Google Pay ⋅ Identity verification
 Case ID 9-8189000034335
@@ -38,6 +39,8 @@ Play Console ⋅ Play Console App
 Case ID 8-1801000034107
 In progress
 Last updated 7 days ago
+
+![Google Play Error](screenshots/GooglePlayDeploymentError.jpeg "Google Play Verification Failure")
 
 
 ### Images
