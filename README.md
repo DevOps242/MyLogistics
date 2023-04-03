@@ -23,6 +23,23 @@
 ### Author
 > Akeem Palmer - [Github](https://github.com/DevOps242), [LinkedIn](https://www.linkedin.com/in/akeempalmer/), [Portfolio](https://akeempalmer.onrender.com)
 
+### Changes for Assignment 3
+> Upgraded the launcher and app icon.
+> Fixed the Bottom Navigation to show the active page.
+> Secured Firebase-Firestore Database.
+> Added AAB to google play internal release (awaiting verification from Google Play Team, currently requested assistance from support's supervisor (case #below/).
+
+Google Pay ⋅ Identity verification
+Case ID 9-8189000034335
+In progress
+Last updated 4 hr ago
+
+Play Console ⋅ Play Console App
+Case ID 8-1801000034107
+In progress
+Last updated 7 days ago
+
+
 ### Images
 
 ![Google Authentication](screenshots/logistics.webp "Google Authentication")
